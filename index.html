@@ -75,20 +75,25 @@ header.top {
   z-index: 100002;
 }
 #nav { display: none; }
+
 #nav.open {
-  display: flex;
-  position: fixed;
-  top: calc(3.75rem + env(safe-area-inset-top, 0px));
+  display: flex !important;
+  position: fixed !important;
+  top: 120px;
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 100001;
+  width: 100%;
+  height: calc(100dvh - 120px);
+  box-sizing: border-box;
+  z-index: 999999 !important;
   flex-direction: column;
-  gap: .25rem;
+  align-items: stretch;
+  gap: 20px;
   overflow-y: auto;
-  overscroll-behavior: contain;
-  padding: 1.25rem 1.25rem calc(2rem + env(safe-area-inset-bottom, 0px));
-  background: rgba(10,3,16,.99);
+  padding: 24px;
+  background: #0a0310;
+}
   border-top: 1px solid var(--line);
   box-shadow: 0 1rem 3rem #000;
 }
