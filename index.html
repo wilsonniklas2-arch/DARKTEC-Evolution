@@ -1,9 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#000000">
+<meta name="description" content="DARKTEC Evolution – Kreativstudio für Storytelling, immersive Unterhaltung, Charakterdesign und interaktive Welten.">
 <title>DARKTEC Evolution</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,800;1,6..96,500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -23,8 +25,6 @@ a{color:var(--ember)}
 :focus-visible{outline:3px solid var(--ember);outline-offset:3px}
 .wrap{max-width:70rem;margin:0 auto;padding:0 var(--gr) 0 var(--gx)}
 .skip{position:absolute;left:-999px}.skip:focus{left:1rem;top:1rem;background:#fff;color:#000;padding:.5rem 1rem;z-index:99}
-
-/* Kompaktes Menü */
 header.top{position:sticky;top:0;z-index:30;background:rgba(0,0,0,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
 .bar{display:flex;align-items:center;justify-content:space-between;height:3.5rem}
 .logo{font:800 1.1rem var(--display);color:var(--ink);text-decoration:none;letter-spacing:.01em}
@@ -39,8 +39,6 @@ header.top{position:sticky;top:0;z-index:30;background:rgba(0,0,0,.9);backdrop-f
   #nav a{font:500 .95rem var(--body);padding:.4rem 0;border:0;color:var(--mute)}
   #nav a:hover{color:var(--ink)}
 }
-
-/* Hero */
 .hero{position:relative;min-height:calc(100svh - 3.5rem);display:flex;align-items:flex-end;overflow:hidden;padding:4rem 0 3.5rem;isolation:isolate}
 .hero::before{content:"";position:absolute;inset:-25%;z-index:-1;background:
   conic-gradient(from 195deg at 18% -8%,transparent 0 7%,rgba(138,63,252,.5) 10.5%,transparent 15%),
@@ -59,9 +57,8 @@ h1 span{display:block;background:linear-gradient(95deg,#fff 20%,#e0b8ff 55%,var(
 .btns{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2rem}
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:3rem;padding:.7rem 1.5rem;border-radius:2px;font:600 1rem var(--body);text-decoration:none;border:1px solid var(--violet);color:var(--ink);background:transparent;cursor:pointer}
 .btn.main{background:linear-gradient(100deg,var(--violet),var(--magenta));border-color:transparent;color:#fff}
+.btn:disabled{opacity:.65;cursor:wait}
 @media(max-width:30rem){.btns .btn{width:100%}}
-
-/* Sektionen */
 section{padding:4.5rem 0;border-top:1px solid var(--line)}
 h2{font:800 clamp(1.9rem,7vw,3.2rem)/1.1 var(--display);margin:0 0 1.25rem;letter-spacing:-.015em}
 h3{font:500 1.45rem/1.2 var(--display);margin:0 0 .5rem}
@@ -69,16 +66,12 @@ h3{font:500 1.45rem/1.2 var(--display);margin:0 0 .5rem}
 .cols{display:grid;gap:2.25rem 3rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,16rem),1fr))}
 .cols p,.svc p{color:var(--mute);margin:0}
 .svc{border-top:1px solid var(--line);padding-top:1rem}
-
-/* Prozess */
 .pipe{list-style:none;margin:0;padding:0;counter-reset:s;border-left:2px solid var(--violet)}
 .pipe li{counter-increment:s;padding:0 0 1.5rem 1.6rem;position:relative}
 .pipe li::before{content:counter(s);position:absolute;left:-.95rem;top:0;width:1.6rem;height:1.6rem;border-radius:50%;background:var(--void);border:2px solid var(--magenta);font-size:.8rem;display:grid;place-items:center}
 .pipe b{font:500 1.2rem var(--display)}.pipe span{display:block;color:var(--mute)}
 @media(min-width:60rem){.pipe{display:grid;grid-template-columns:repeat(6,1fr);border-left:0;border-top:2px solid var(--violet)}
 .pipe li{padding:1.5rem 1rem 0 0}.pipe li::before{left:0;top:-.95rem}}
-
-/* Projekte */
 .p{position:relative;overflow:hidden;margin:0 0 2rem;padding:1.75rem 1.25rem;border:1px solid var(--line);isolation:isolate}
 @media(min-width:48rem){.p{padding:3rem}}
 .pg{display:grid;gap:1.75rem;grid-template-columns:1fr}
@@ -88,30 +81,24 @@ h3{font:500 1.45rem/1.2 var(--display);margin:0 0 .5rem}
 .art{aspect-ratio:4/5;max-height:26rem;width:100%;display:flex;align-items:flex-end;padding:1rem;border:1px dashed rgba(255,255,255,.28);position:relative;overflow:hidden;background:rgba(0,0,0,.35)}
 .art small{position:relative;color:#d8cbe3;font-size:.9rem;background:rgba(0,0,0,.6);padding:.2rem .6rem}
 .art svg,.art i{position:absolute;inset:0;width:100%;height:100%}
-/* Aethelgard: kosmisch */
 .ae{background:radial-gradient(60% 50% at 85% 0%,rgba(138,63,252,.4),transparent 70%),radial-gradient(50% 50% at 5% 100%,rgba(224,33,138,.28),transparent 70%),radial-gradient(40% 30% at 50% 50%,rgba(255,106,26,.1),transparent 70%),#030008}
 .ae::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(1.2px 1.2px at 12% 18%,#fff,transparent),radial-gradient(1px 1px at 33% 72%,#e8d0ff,transparent),radial-gradient(1.5px 1.5px at 58% 28%,#fff,transparent),radial-gradient(1px 1px at 80% 60%,#ffd0b0,transparent),radial-gradient(1px 1px at 90% 12%,#fff,transparent),radial-gradient(1.2px 1.2px at 45% 90%,#fff,transparent),radial-gradient(1px 1px at 70% 85%,#f0c8ff,transparent)}
 .ae h3{font:800 clamp(2rem,8vw,3.6rem)/1;letter-spacing:.02em;background:linear-gradient(90deg,#fff,#c79bff,var(--magenta),var(--ember));-webkit-background-clip:text;background-clip:text;color:transparent}
 .ae .art{border-radius:50%/42%;aspect-ratio:1;max-width:24rem;margin:0 auto;border-color:rgba(199,155,255,.45)}
-/* Halloween: Theater */
 .ha{background:radial-gradient(60% 70% at 50% 0%,rgba(255,106,26,.28),transparent 65%),#070203}
 .ha::before{content:"";position:absolute;inset:0;z-index:-1;background:repeating-linear-gradient(90deg,rgba(120,10,10,.28) 0 2.2rem,rgba(0,0,0,0) 2.2rem 4.4rem);-webkit-mask:linear-gradient(#000,transparent 45%);mask:linear-gradient(#000,transparent 45%)}
-.ha h3{font:800 clamp(1.9rem,7vw,3rem)/1.05;color:var(--ember);text-shadow:0 0 1.5rem rgba(255,106,26,.5)}
+.ha h3{font:800 clamp(1.9rem,7vw,3rem)/1.05 var(--ember);color:var(--ember);text-shadow:0 0 1.5rem rgba(255,106,26,.5)}
 .ha .art{border-color:rgba(255,106,26,.5);background:conic-gradient(from 180deg at 50% -5%,transparent 0 40%,rgba(255,200,140,.28) 49.5%,transparent 60%),#050101}
-/* Jukebox: Musik */
 .ju{background:linear-gradient(160deg,#10031a,#000 60%),#000;border-color:rgba(224,33,138,.4)}
-.ju h3{font:800 clamp(1.9rem,7vw,3rem)/1.05;color:#ff6fbf}
+.ju h3{font:800 clamp(1.9rem,7vw,3rem)/1.05 var(--display);color:#ff6fbf}
 .ju .tag{border-color:var(--magenta);color:#ff8fd0}
 .ju .art{display:flex;align-items:flex-end;justify-content:space-between;gap:.35rem;padding:1rem 1rem 3rem;border-color:rgba(224,33,138,.5)}
 .ju .art b{flex:1;border-radius:2px 2px 0;background:linear-gradient(var(--magenta),var(--violet))}
 .ju .art small{position:absolute;left:1rem;bottom:1rem}
-/* Game: Entwicklung */
 .ga{background:linear-gradient(transparent 95%,rgba(138,63,252,.25) 96%) 0 0/100% 1.6rem,linear-gradient(90deg,transparent 95%,rgba(138,63,252,.25) 96%) 0 0/1.6rem 100%,#05030a;border-color:rgba(138,63,252,.6)}
-.ga h3{font:800 clamp(1.9rem,7vw,3rem)/1.05;color:#c9a8ff}
+.ga h3{font:800 clamp(1.9rem,7vw,3rem)/1.05 var(--display);color:#c9a8ff}
 .ga .tag{border-color:var(--violet);color:#c9a8ff}
 .ga .art{border:2px dashed var(--violet);border-radius:0;box-shadow:inset 0 0 0 .6rem #05030a,inset 0 0 0 calc(.6rem + 1px) rgba(255,106,26,.5)}
-
-/* Kevin */
 .kevin{display:grid;gap:2.25rem;grid-template-columns:1fr;align-items:center}
 @media(min-width:48rem){.kevin{grid-template-columns:18rem 1fr;gap:3.5rem}}
 .fig{aspect-ratio:3/4;max-width:18rem;width:100%;margin:0 auto;border:1px solid var(--line);background:conic-gradient(from 170deg at 50% -5%,transparent 0 38%,rgba(224,33,138,.35) 50%,transparent 62%),radial-gradient(70% 40% at 50% 100%,rgba(255,106,26,.35),transparent 70%),#050208;display:flex;align-items:flex-end;justify-content:center;overflow:hidden}
@@ -120,8 +107,6 @@ h3{font:500 1.45rem/1.2 var(--display);margin:0 0 .5rem}
 .kl{list-style:none;margin:1.25rem 0 0;padding:0;display:grid;gap:.9rem}
 .kl li{border-left:2px solid var(--violet);padding-left:1rem;color:var(--mute)}.kl b{color:var(--ink);font-weight:600}
 .note{font-size:.98rem;color:var(--mute);border-left:2px solid var(--magenta);padding-left:.9rem;margin-top:1.5rem}
-
-/* Formular (16px verhindert Zoom auf iPhone) */
 form{display:grid;gap:1.15rem;max-width:36rem}
 label{display:grid;gap:.4rem;font-weight:500}
 input,select,textarea{font:400 16px/1.4 var(--body);color:var(--ink);background:var(--panel);border:1px solid #5b3b6e;border-radius:2px;padding:.8rem;width:100%;min-height:3rem}
@@ -131,6 +116,7 @@ textarea{min-height:9rem}
 #out pre{white-space:pre-wrap;word-break:break-word;font:inherit;margin:0 0 1rem}
 footer{border-top:1px solid var(--line);padding:3rem 0;color:var(--mute);font-size:1rem}
 .ph{display:inline-block;border:1px dashed #5b3b6e;padding:.15rem .5rem;margin:.2rem .2rem .2rem 0;color:#dcc0ff}
+.hp{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important}
 @media(prefers-reduced-motion:reduce){.hero::before{animation:none}html{scroll-behavior:auto}}
 </style>
 </head>
@@ -255,15 +241,34 @@ footer{border-top:1px solid var(--line);padding:3rem 0;color:var(--mute);font-si
 
 <section id="kontakt"><div class="wrap">
   <h2>Projekt anfragen</h2>
-  <p class="intro">Beschreibe dein Vorhaben oder deine Kooperationsidee. Das Formular ist noch nicht an einen Versanddienst angeschlossen: Es erstellt einen fertigen Anfragetext, den du kopieren und über einen Kanal deiner Wahl senden kannst. Kontaktdaten folgen, sobald sie feststehen.</p>
+  <p class="intro">Beschreibe dein Vorhaben oder deine Kooperationsidee. Deine Anfrage wird über Web3Forms an unser Kontaktpostfach übermittelt. Bitte sende keine sensiblen persönlichen Daten.</p>
   <form id="f" novalidate>
-    <label>Name<input id="n" autocomplete="name"><span class="err" id="en"></span></label>
-    <label>E-Mail<input id="m" type="email" autocomplete="email" inputmode="email"><span class="err" id="em"></span></label>
-    <label>Art der Anfrage<select id="t"><option>Projektanfrage</option><option>Kooperation</option><option>Allgemeine Frage</option></select></label>
-    <label>Deine Nachricht<textarea id="b"></textarea><span class="err" id="eb"></span></label>
-    <div><button class="btn main" type="submit">Anfragetext erstellen</button></div>
+    <input type="hidden" name="access_key" value="7f468dde-5e4d-44fd-8820-9576bb0ae756">
+    <input type="hidden" name="subject" value="Neue Projektanfrage – DARKTEC Evolution">
+    <input type="hidden" name="from_name" value="DARKTEC Evolution">
+    <div class="hp" aria-hidden="true"><label>Nicht ausfüllen<input type="checkbox" name="botcheck" tabindex="-1"></label></div>
+    <label>Name
+      <input id="n" name="name" autocomplete="name" required>
+      <span class="err" id="en"></span>
+    </label>
+    <label>E-Mail
+      <input id="m" name="email" type="email" autocomplete="email" inputmode="email" required>
+      <span class="err" id="em"></span>
+    </label>
+    <label>Art der Anfrage
+      <select id="t" name="art_der_anfrage">
+        <option>Projektanfrage</option>
+        <option>Kooperation</option>
+        <option>Allgemeine Frage</option>
+      </select>
+    </label>
+    <label>Deine Nachricht
+      <textarea id="b" name="message" required></textarea>
+      <span class="err" id="eb"></span>
+    </label>
+    <div><button class="btn main" type="submit">Anfrage senden</button></div>
   </form>
-  <div id="out" role="status" tabindex="-1">
+  <div id="out" role="status" tabindex="-1" aria-live="polite">
     <pre id="txt"></pre>
     <button class="btn" id="cp" type="button">Text kopieren</button>
     <span id="cpm" class="err" style="color:var(--mute)"></span>
@@ -273,37 +278,117 @@ footer{border-top:1px solid var(--line);padding:3rem 0;color:var(--mute);font-si
 
 <footer id="rechtliches"><div class="wrap">
   <h3>Rechtliche Angaben</h3>
-  <p>Vor dem öffentlichen, gewerblichen Betrieb in Deutschland müssen ergänzt werden:</p>
-  <p><span class="ph">Impressum: Name, Anschrift, Kontakt, ggf. Rechtsform und Registerangaben, USt-IdNr.</span><span class="ph">Datenschutzerklärung</span><span class="ph">Cookie-Hinweise, falls später Dienste eingebunden werden</span></p>
-  <p>Diese Seite enthält keine Testimonials, Kundenlogos oder abgeschlossenen Kundenprojekte. Es sind keine Zahlungs-, Werbe- oder Drittanbieter-Dienste aktiv.</p>
+  <p>Vor dem öffentlichen, gewerblichen Betrieb in Deutschland müssen die erforderlichen Angaben ergänzt und rechtlich geprüft werden:</p>
+  <p><span class="ph">Impressum: Name, Anschrift und erforderliche Kontaktangaben</span><span class="ph">Datenschutzerklärung einschließlich Web3Forms</span></p>
+  <p>Das Kontaktformular übermittelt eingegebene Daten zur Bearbeitung der Anfrage an Web3Forms. Prüfe vor dem öffentlichen Einsatz die aktuellen Datenschutzinformationen und Bedingungen des Anbieters und ergänze eine passende Datenschutzerklärung. Verarbeite über das Formular keine sensiblen persönlichen Daten.</p>
+  <p>Diese Seite enthält keine Testimonials, Kundenlogos oder abgeschlossenen Kundenprojekte.</p>
   <p>© DARKTEC Evolution</p>
 </div></footer>
 
 <script>
 (function(){
-  var btn=document.getElementById('menuBtn'),nav=document.getElementById('nav');
-  function setMenu(o){nav.classList.toggle('open',o);btn.setAttribute('aria-expanded',o);btn.textContent=o?'Schließen':'Menü';document.body.style.overflow=o?'hidden':''}
-  btn.addEventListener('click',function(){setMenu(!nav.classList.contains('open'))});
-  nav.addEventListener('click',function(e){if(e.target.tagName==='A')setMenu(false)});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape')setMenu(false)});
-  window.addEventListener('resize',function(){if(window.innerWidth>=960)setMenu(false)});
+  var btn=document.getElementById('menuBtn');
+  var nav=document.getElementById('nav');
+
+  function setMenu(open){
+    nav.classList.toggle('open',open);
+    btn.setAttribute('aria-expanded',String(open));
+    btn.textContent=open?'Schließen':'Menü';
+    document.body.style.overflow=open?'hidden':'';
+  }
+
+  btn.addEventListener('click',function(){
+    setMenu(!nav.classList.contains('open'));
+  });
+  nav.addEventListener('click',function(e){
+    if(e.target.tagName==='A')setMenu(false);
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape')setMenu(false);
+  });
+  window.addEventListener('resize',function(){
+    if(window.innerWidth>=960)setMenu(false);
+  });
 
   var f=document.getElementById('f');
-  function v(eid,msg,ok){document.getElementById(eid).textContent=ok?'':msg;return ok}
-  f.addEventListener('submit',function(ev){
+
+  function v(id,message,ok){
+    document.getElementById(id).textContent=ok?'':message;
+    return ok;
+  }
+
+  f.addEventListener('submit',async function(ev){
     ev.preventDefault();
-    var n=document.getElementById('n').value.trim(),m=document.getElementById('m').value.trim(),b=document.getElementById('b').value.trim(),t=document.getElementById('t').value;
-    var a=v('en','Bitte gib deinen Namen ein.',n.length>0);
-    var c=v('em','Bitte gib eine gültige E-Mail-Adresse ein.',/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(m));
-    var d=v('eb','Bitte beschreibe kurz dein Vorhaben.',b.length>0);
-    if(!(a&&c&&d))return;
-    document.getElementById('txt').textContent='Art der Anfrage: '+t+'\nName: '+n+'\nE-Mail: '+m+'\n\n'+b;
-    var o=document.getElementById('out');o.style.display='block';o.focus();
+
+    var n=document.getElementById('n').value.trim();
+    var m=document.getElementById('m').value.trim();
+    var b=document.getElementById('b').value.trim();
+    var t=document.getElementById('t').value;
+
+    var nameOk=v('en','Bitte gib deinen Namen ein.',n.length>0);
+    var emailOk=v('em','Bitte gib eine gültige E-Mail-Adresse ein.',/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(m));
+    var messageOk=v('eb','Bitte beschreibe kurz dein Vorhaben.',b.length>0);
+
+    if(!(nameOk&&emailOk&&messageOk))return;
+
+    var button=f.querySelector('button[type="submit"]');
+    var oldText=button.textContent;
+    var output=document.getElementById('out');
+    var outputText=document.getElementById('txt');
+
+    button.disabled=true;
+    button.textContent='Wird gesendet …';
+    output.style.display='none';
+
+    var data=new FormData(f);
+    data.set('name',n);
+    data.set('email',m);
+    data.set('message','Art der Anfrage: '+t+'\n\n'+b);
+
+    try{
+      var response=await fetch('https://api.web3forms.com/submit',{
+        method:'POST',
+        body:data
+      });
+      var result=await response.json();
+
+      if(!response.ok||!result.success){
+        throw new Error('Versand fehlgeschlagen');
+      }
+
+      outputText.textContent='Vielen Dank, '+n+'! Deine Anfrage wurde erfolgreich übermittelt.';
+      output.style.display='block';
+      f.reset();
+
+    }catch(error){
+      outputText.textContent='Der Versand hat leider nicht funktioniert. Bitte prüfe deine Internetverbindung und versuche es erneut. Wenn das Problem bestehen bleibt, kontaktiere uns bitte über einen anderen Weg.';
+      output.style.display='block';
+
+    }finally{
+      button.disabled=false;
+      button.textContent=oldText;
+      output.focus();
+    }
   });
+
   document.getElementById('cp').addEventListener('click',function(){
-    var s=document.getElementById('txt').textContent,msg=document.getElementById('cpm');
-    var fail=function(){msg.textContent=' Kopieren nicht möglich. Bitte Text markieren und manuell kopieren.'};
-    try{navigator.clipboard.writeText(s).then(function(){msg.textContent=' Kopiert.'},fail)}catch(e){fail()}
+    var text='Art der Anfrage: '+document.getElementById('t').value+
+      '\nName: '+document.getElementById('n').value.trim()+
+      '\nE-Mail: '+document.getElementById('m').value.trim()+
+      '\n\n'+document.getElementById('b').value.trim();
+    var message=document.getElementById('cpm');
+
+    function fail(){
+      message.textContent='Kopieren nicht möglich. Bitte markiere den Text und kopiere ihn manuell.';
+    }
+
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){
+        message.textContent='Text kopiert.';
+      }).catch(fail);
+    }else{
+      fail();
+    }
   });
 })();
 </script>
