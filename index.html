@@ -281,6 +281,60 @@ footer { padding: 3rem 0; border-top: 1px solid var(--line); color: var(--muted)
   html { scroll-behavior: auto; }
   .hero::before { animation: none; }
 }
+/* DARKTEC PREMIUM FOOTER */
+.darktec-footer {
+  background: #100817;
+  border-top: 1px solid #49316B;
+  padding: 3rem 0 2rem;
+  text-align: center;
+}
+
+.darktec-footer .footer-brand {
+  color: #D4AF37;
+  letter-spacing: .25em;
+  font-size: .8rem;
+  font-weight: 700;
+}
+
+.darktec-footer h3 {
+  color: #F5EFFA;
+  font-size: 1.8rem;
+  margin: 1rem 0 .5rem;
+}
+
+.darktec-footer .footer-subtitle {
+  color: #BFB2C9;
+}
+
+.darktec-footer .footer-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.darktec-footer .footer-links a {
+  color: #D4AF37;
+  text-decoration: none;
+  border-bottom: 1px solid #49316B;
+  padding: .5rem 0;
+}
+
+.darktec-footer .footer-links a:hover {
+  color: #A855F7;
+}
+
+.darktec-footer .footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .75rem;
+  border-top: 1px solid #33203D;
+  padding-top: 1.25rem;
+  color: #BFB2C9;
+  font-size: .8rem;
+}
 /* DARKTEC GOLD OVERRIDE */
 #nav.open a,
 #nav.open a:link,
@@ -409,13 +463,26 @@ footer { padding: 3rem 0; border-top: 1px solid var(--line); color: var(--muted)
     <div id="out" role="status" tabindex="-1" aria-live="polite"><p id="txt"></p><button class="btn" id="cp" type="button">Text kopieren</button> <span id="cpm" class="err"></span></div>
   </div></section>
 </main>
-<footer><div class="wrap">
-  <h3>Rechtliche Angaben</h3>
-  <p>Vor einem öffentlichen oder gewerblichen Betrieb müssen die erforderlichen Impressumsangaben ergänzt und eine passende Datenschutzerklärung erstellt werden.</p>
-  <p><span class="placeholder">Impressum ergänzen</span><span class="placeholder">Datenschutzerklärung ergänzen</span></p>
-  <p>Das Kontaktformular übermittelt Daten an Web3Forms. Prüfe vor dem öffentlichen Einsatz die aktuellen Datenschutzinformationen und Bedingungen des Anbieters.</p>
-  <p>© DARKTEC Evolution</p>
-</div></footer>
+
+<footer class="darktec-footer">
+  <div class="wrap">
+    <p class="footer-brand">DARKTEC EVOLUTION</p>
+    <h3>Beyond Imagination.</h3>
+    <p class="footer-subtitle">
+      Ideen. Welten. Evolution.
+    </p>
+
+    <div class="footer-links">
+      <a href="impressum.html">Impressum</a>
+      <a href="Datenschutz.html">Datenschutz</a>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 DARKTEC Evolution</span>
+      <span>Created in the DARK</span>
+    </div>
+  </div>
+</footer>
 <script>
 (function(){
   var btn = document.getElementById('menuBtn');
