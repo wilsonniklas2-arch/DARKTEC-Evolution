@@ -406,9 +406,11 @@ footer { padding: 3rem 0; border-top: 1px solid var(--line); color: var(--muted)
     document.body.classList.toggle('menu-open', open);
   }
 
-  btn.onclick = function(){
-  alert('KLICK FUNKTIONIERT 😂');
+  btn.onclick = function () {
   nav.classList.toggle('open');
+  btn.textContent = nav.classList.contains('open')
+    ? '✕ Schließen'
+    : '☰ Menü';
 };
 
   nav.addEventListener('click', function(e){
