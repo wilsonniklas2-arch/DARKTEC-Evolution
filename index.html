@@ -598,6 +598,419 @@ footer { padding: 3rem 0; border-top: 1px solid var(--line); color: var(--muted)
   });
 })();
 </script>
+<!-- DARKTEC KEVIN GUIDE: PHASE 1 -->
+<style>
+  #kevin-widget, #kevin-widget * {
+    box-sizing: border-box;
+  }
+
+  #kevin-launcher {
+    position: fixed;
+    right: 18px;
+    bottom: max(18px, env(safe-area-inset-bottom));
+    z-index: 100010;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 17px;
+    border: 1px solid #d4af37;
+    border-radius: 999px;
+    background: linear-gradient(120deg, #7628d7, #e0218a);
+    color: #fff;
+    font: 700 15px/1.2 -apple-system, BlinkMacSystemFont, sans-serif;
+    box-shadow: 0 0 24px #8a3ffc66;
+    cursor: pointer;
+  }
+
+  #kevin-launcher .kevin-orb {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #100817;
+    color: #d4af37;
+    font-family: Georgia, serif;
+    font-size: 19px;
+  }
+
+  #kevin-panel {
+    position: fixed;
+    right: 14px;
+    bottom: calc(82px + env(safe-area-inset-bottom));
+    z-index: 100011;
+    display: none;
+    flex-direction: column;
+    width: min(390px, calc(100vw - 28px));
+    height: min(590px, calc(100dvh - 120px));
+    min-height: 350px;
+    overflow: hidden;
+    border: 1px solid #68418d;
+    border-radius: 18px;
+    background: #100817;
+    color: #f5effa;
+    box-shadow: 0 12px 50px #000b;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  #kevin-panel.is-open {
+    display: flex;
+  }
+
+  .kv-head {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 15px;
+    background: linear-gradient(110deg, #241039, #160b29);
+    border-bottom: 1px solid #49316b;
+  }
+
+  .kv-avatar {
+    display: grid;
+    place-items: center;
+    flex: 0 0 43px;
+    width: 43px;
+    height: 43px;
+    border: 1px solid #d4af37;
+    border-radius: 50%;
+    background: radial-gradient(circle, #812be0, #100817 75%);
+    color: #f5d66b;
+    font: 700 22px Georgia, serif;
+    box-shadow: 0 0 18px #8a3ffc55;
+  }
+
+  .kv-heading {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .kv-heading strong {
+    display: block;
+    font-size: 16px;
+  }
+
+  .kv-heading small {
+    color: #d4af37;
+    font-size: 11px;
+    letter-spacing: .09em;
+  }
+
+  #kevin-close {
+    width: 36px;
+    height: 36px;
+    border: 1px solid #49316b;
+    border-radius: 50%;
+    background: #100817;
+    color: #f5effa;
+    font-size: 23px;
+    cursor: pointer;
+  }
+
+  #kevin-messages {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    overflow-y: auto;
+    padding: 15px;
+    overscroll-behavior: contain;
+  }
+
+  .kv-message {
+    max-width: 91%;
+    padding: 11px 13px;
+    border-radius: 13px;
+    font-size: 14px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+
+  .kv-kevin {
+    align-self: flex-start;
+    border: 1px solid #49316b;
+    border-bottom-left-radius: 3px;
+    background: #21112f;
+  }
+
+  .kv-user {
+    align-self: flex-end;
+    border: 1px solid #8a3ffc;
+    border-bottom-right-radius: 3px;
+    background: #452071;
+  }
+
+  .kv-quick {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    padding: 0 13px 12px;
+  }
+
+  .kv-quick button {
+    padding: 8px 10px;
+    border: 1px solid #68418d;
+    border-radius: 999px;
+    background: #160b29;
+    color: #e7d9f5;
+    font-size: 12px;
+    cursor: pointer;
+  }
+
+  .kv-quick button:hover {
+    border-color: #d4af37;
+    color: #d4af37;
+  }
+
+  .kv-compose {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    padding: 12px;
+    border-top: 1px solid #49316b;
+    background: #09030e;
+  }
+
+  #kevin-input {
+    flex: 1;
+    width: 0;
+    min-width: 0;
+    min-height: 44px;
+    max-height: 100px;
+    margin: 0;
+    padding: 11px;
+    resize: none;
+    border: 1px solid #68418d;
+    border-radius: 10px;
+    background: #160b29;
+    color: #fff;
+    font: 16px/1.35 -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  #kevin-send {
+    min-height: 44px;
+    padding: 0 14px;
+    border: 0;
+    border-radius: 10px;
+    background: linear-gradient(110deg, #8a3ffc, #e0218a);
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  #kevin-send:disabled {
+    opacity: .55;
+    cursor: default;
+  }
+
+  .kv-footnote {
+    padding: 0 12px 9px;
+    background: #09030e;
+    color: #bfb2c9;
+    text-align: center;
+    font-size: 10px;
+  }
+
+  #kevin-launcher:focus-visible,
+  #kevin-panel button:focus-visible,
+  #kevin-input:focus-visible {
+    outline: 3px solid #d4af37;
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 480px) {
+    #kevin-panel {
+      right: 10px;
+      bottom: calc(78px + env(safe-area-inset-bottom));
+      width: calc(100vw - 20px);
+      height: min(570px, calc(100dvh - 110px));
+    }
+
+    #kevin-launcher {
+      right: 12px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #kevin-panel,
+    #kevin-launcher {
+      scroll-behavior: auto;
+    }
+  }
+</style>
+
+<div id="kevin-widget">
+  <button id="kevin-launcher" type="button"
+          aria-expanded="false" aria-controls="kevin-panel">
+    <span class="kevin-orb" aria-hidden="true">K.</span>
+    <span>Kevin fragen</span>
+  </button>
+
+  <section id="kevin-panel" aria-label="Kevin, dein DARKTEC-Guide"
+           aria-hidden="true">
+    <div class="kv-head">
+      <div class="kv-avatar" aria-hidden="true">K.</div>
+      <div class="kv-heading">
+        <strong>Kevin, dein Guide</strong>
+        <small>DARKTEC EVOLUTION · DEMO</small>
+      </div>
+      <button id="kevin-close" type="button" aria-label="Chat schließen">×</button>
+    </div>
+
+    <div id="kevin-messages" role="log" aria-live="polite"
+         aria-relevant="additions text">
+      <div class="kv-message kv-kevin">
+        Na endlich! 😏 Ich bin Kevin – dein Guide durch DARKTEC Evolution.
+        Frag mich etwas über unsere Projekte, unsere Ideen oder die Website.
+        Ich bin bereit. Was kann schon schiefgehen?
+      </div>
+    </div>
+
+    <div class="kv-quick" aria-label="Schnellfragen">
+      <button type="button" data-question="Was ist DARKTEC Evolution?">Was ist DARKTEC?</button>
+      <button type="button" data-question="Erzähl mir von den Projekten.">Die Projekte</button>
+      <button type="button" data-question="Welche Leistungen bietet DARKTEC an?">Leistungen</button>
+      <button type="button" data-question="Wie kann ich DARKTEC kontaktieren?">Kontakt</button>
+    </div>
+
+    <form id="kevin-form" class="kv-compose">
+      <textarea id="kevin-input" rows="1" maxlength="1000"
+                aria-label="Nachricht an Kevin"
+                placeholder="Frag Kevin etwas …" required></textarea>
+      <button id="kevin-send" type="submit">Senden</button>
+    </form>
+    <div class="kv-footnote">
+      Demo-Version · Antworten sind noch nicht KI-generiert.
+    </div>
+  </section>
+</div>
+
+<script>
+(function () {
+  var launcher = document.getElementById('kevin-launcher');
+  var panel = document.getElementById('kevin-panel');
+  var closeBtn = document.getElementById('kevin-close');
+  var messages = document.getElementById('kevin-messages');
+  var form = document.getElementById('kevin-form');
+  var input = document.getElementById('kevin-input');
+  var sendBtn = document.getElementById('kevin-send');
+
+  if (!launcher || !panel || !messages || !form || !input) return;
+
+  function openKevin() {
+    panel.classList.add('is-open');
+    panel.setAttribute('aria-hidden', 'false');
+    launcher.setAttribute('aria-expanded', 'true');
+    launcher.querySelector('span:last-child').textContent = 'Kevin öffnen';
+    input.focus();
+  }
+
+  function closeKevin() {
+    panel.classList.remove('is-open');
+    panel.setAttribute('aria-hidden', 'true');
+    launcher.setAttribute('aria-expanded', 'false');
+    launcher.querySelector('span:last-child').textContent = 'Kevin fragen';
+    launcher.focus();
+  }
+
+  function addMessage(text, who) {
+    var bubble = document.createElement('div');
+    bubble.className = 'kv-message ' + (who === 'user' ? 'kv-user' : 'kv-kevin');
+    bubble.textContent = text;
+    messages.appendChild(bubble);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function getDemoReply(question) {
+    var q = question.toLowerCase();
+
+    if (q.includes('hallo') || q.includes('hi ') ||
+        q === 'hi' || q.includes('hey') || q.includes('servus')) {
+      return 'Hey! 😈 Ich bin Kevin. Ich kenne zwar noch nicht jede Antwort auswendig, aber ich zeige dir gern, was DARKTEC zu bieten hat. Was interessiert dich?';
+    }
+
+    if (q.includes('was ist darktec') || q.includes('darktec evolution') ||
+        q.includes('philosophie') || q.includes('wer seid')) {
+      return 'DARKTEC Evolution ist ein Kreativstudio für Konzeptentwicklung: Storytelling, immersive Shows, Charakterdesign und interaktive Welten. Die Idee ist nicht nur, Ideen zu sammeln – wir wollen sie zu ausgearbeiteten Konzepten weiterentwickeln. Klingt nach Arbeit? Ist es auch. 😏';
+    }
+
+    if (q.includes('projekt') || q.includes('aethelgard') ||
+        q.includes('halloween') || q.includes('jukebox') ||
+        q.includes('game')) {
+      return 'Unsere Projekte umfassen Die Chroniken von Aethelgard, DARKTEC Halloween, DARKTEC Jukebox und DARKTEC Game. Sie befinden sich in unterschiedlichen Konzept- oder Entwicklungsstadien. Ich erzähle dir gern mehr – echte Projekt-Detailseiten bauen wir als Nächstes aus.';
+    }
+
+    if (q.includes('leistung') || q.includes('angebot') ||
+        q.includes('was bietet')) {
+      return 'DARKTEC entwickelt Konzepte für Theater und immersive Erlebnisse, Charaktere, Storytelling und Worldbuilding, Spiel- und Interaktionsideen, visuelle Entwicklung sowie Produkte und Erlebnisse. Der genaue Umfang wird individuell besprochen.';
+    }
+
+    if (q.includes('kontakt') || q.includes('anfrage') ||
+        q.includes('erreichen') || q.includes('email') ||
+        q.includes('e-mail')) {
+      return 'Du möchtest Kontakt aufnehmen? 😎 Nutze das Projektanfrage-Formular auf der Website. Dort kannst du Projektanfragen, Kooperationen oder allgemeine Fragen auswählen.';
+    }
+
+    if (q.includes('hilfe') || q.includes('problem') ||
+        q.includes('funktioniert nicht') || q.includes('fehler')) {
+      return 'Okay, wir knacken das Problem Schritt für Schritt. 😈 Beschreibe kurz, was du angeklickt hast, was du erwartet hast und was stattdessen passiert. In dieser Demo kann ich das Problem noch nicht automatisch prüfen – bei Bedarf führt dich der Kontaktbereich weiter.';
+    }
+
+    return 'Gute Frage! 😏 Mein echtes KI-Gehirn ist noch nicht angeschlossen – diese Version arbeitet mit vorbereiteten Antworten. Schau dich auf der Website um oder nutze das Kontaktformular. In Phase 2 bekommt Kevin seine echte KI-Anbindung.';
+  }
+
+  function sendMessage(text) {
+    var question = text.trim();
+    if (!question || sendBtn.disabled) return;
+
+    addMessage(question, 'user');
+    input.value = '';
+    input.style.height = 'auto';
+    sendBtn.disabled = true;
+
+    window.setTimeout(function () {
+      addMessage(getDemoReply(question), 'kevin');
+      sendBtn.disabled = false;
+      input.focus();
+    }, 350);
+  }
+
+  launcher.addEventListener('click', function () {
+    if (panel.classList.contains('is-open')) {
+      closeKevin();
+    } else {
+      openKevin();
+    }
+  });
+
+  closeBtn.addEventListener('click', closeKevin);
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    sendMessage(input.value);
+  });
+
+  input.addEventListener('input', function () {
+    input.style.height = 'auto';
+    input.style.height = Math.min(input.scrollHeight, 100) + 'px';
+  });
+
+  messages.parentElement.querySelectorAll('[data-question]').forEach(function (button) {
+    button.addEventListener('click', function () {
+      sendMessage(button.getAttribute('data-question') || '');
+    });
+  });
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && panel.classList.contains('is-open')) {
+      closeKevin();
+    }
+  });
+})();
+</script>
+<!-- END DARKTEC KEVIN GUIDE: PHASE 1 -->
 </body>
 </html>
 
