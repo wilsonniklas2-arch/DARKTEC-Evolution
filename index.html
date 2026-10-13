@@ -407,9 +407,10 @@ footer { padding: 3rem 0; border-top: 1px solid var(--line); color: var(--muted)
     document.body.classList.toggle('menu-open', open);
   }
 
-  btn.addEventListener('click', function(){
-    setMenu(!nav.classList.contains('open'));
-  });
+  btn.onclick = function(){
+  alert('KLICK FUNKTIONIERT 😂');
+  nav.classList.toggle('open');
+};
 
   nav.addEventListener('click', function(e){
     if(e.target.closest('a')) setMenu(false);
