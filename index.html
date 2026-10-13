@@ -27,9 +27,10 @@ a{color:var(--ember)}
 .skip{position:absolute;left:-999px}.skip:focus{left:1rem;top:1rem;background:#fff;color:#000;padding:.5rem 1rem;z-index:99}
 
 header.top{
+  Isolation: auto;
   position:sticky;
   top:0;
-  z-index: 1000;
+  z-index: 99999;
   background:rgba(0,0,0,.95);
   backdrop-filter:blur(10px);
   -webkit-backdrop-filter:blur(10px);
@@ -41,8 +42,8 @@ header.top{
   display:none;
   position:fixed;
   inset:calc(3.5rem + env(safe-area-inset-top,0px)) 0 0;
-  z-index:9999;
-  background:#050208;
+  z-index:100000;
+  background:#100817;
   padding:2rem var(--gr) 2rem var(--gx);
   flex-direction:column;
   gap:.25rem;
