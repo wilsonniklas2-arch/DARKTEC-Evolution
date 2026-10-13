@@ -317,8 +317,15 @@ footer{border-top:1px solid var(--line);padding:3rem 0;color:var(--mute);font-si
 <script>
 
 (function(){
+  
+document.addEventListener('DOMContentLoaded', function(){
   var btn=document.getElementById('menuBtn');
   var nav=document.getElementById('nav');
+
+  if(!btn || !nav){
+    console.error('DARKTEC: Menü-Element fehlt.');
+    return;
+  }
 
   function setMenu(open){
     nav.classList.toggle('open',open);
