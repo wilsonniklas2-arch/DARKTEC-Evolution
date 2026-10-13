@@ -316,35 +316,13 @@ footer{border-top:1px solid var(--line);padding:3rem 0;color:var(--mute);font-si
 
 <script>
 
+
 (function(){
   var btn=document.getElementById('menuBtn');
   var nav=document.getElementById('nav');
-  var originalParent=nav.parentNode;
-  var originalNext=nav.nextSibling;
 
   function setMenu(open){
-    if(open){
-      document.body.appendChild(nav);
-      nav.classList.add('open');
-      nav.style.top='calc(3.5rem + env(safe-area-inset-top, 0px))';
-      nav.style.left='0';
-      nav.style.right='0';
-      nav.style.bottom='0';
-      nav.style.position='fixed';
-      nav.style.zIndex='99999';
-      nav.style.background='#050208';
-    }else{
-      nav.classList.remove('open');
-      nav.style.cssText='';
-      if(nav.parentNode===document.body){
-        if(originalNext && originalNext.parentNode===originalParent){
-          originalParent.insertBefore(nav,originalNext);
-        }else{
-          originalParent.appendChild(nav);
-        }
-      }
-    }
-
+    nav.classList.toggle('open',open);
     btn.setAttribute('aria-expanded',String(open));
     btn.textContent=open?'Schließen':'Menü';
     document.body.style.overflow=open?'hidden':'';
@@ -353,16 +331,20 @@ footer{border-top:1px solid var(--line);padding:3rem 0;color:var(--mute);font-si
   btn.addEventListener('click',function(){
     setMenu(!nav.classList.contains('open'));
   });
+
   nav.addEventListener('click',function(e){
-    if(e.target.tagName==='A')setMenu(false);
+    if(e.target.closest('a'))setMenu(false);
   });
+
   document.addEventListener('keydown',function(e){
     if(e.key==='Escape')setMenu(false);
   });
+
   window.addEventListener('resize',function(){
     if(window.innerWidth>=960)setMenu(false);
   });
-})();
+
+  var f=document.getElementById('f');
 
   function v(id,message,ok){
     document.getElementById(id).textContent=ok?'':message;
@@ -411,11 +393,9 @@ footer{border-top:1px solid var(--line);padding:3rem 0;color:var(--mute);font-si
       outputText.textContent='Vielen Dank, '+n+'! Deine Anfrage wurde erfolgreich übermittelt.';
       output.style.display='block';
       f.reset();
-
     }catch(error){
-      outputText.textContent='Der Versand hat leider nicht funktioniert. Bitte prüfe deine Internetverbindung und versuche es erneut. Wenn das Problem bestehen bleibt, kontaktiere uns bitte über einen anderen Weg.';
+      outputText.textContent='Der Versand hat leider nicht funktioniert. Bitte prüfe deine Internetverbindung und versuche es erneut.';
       output.style.display='block';
-
     }finally{
       button.disabled=false;
       button.textContent=oldText;
@@ -430,16 +410,14 @@ footer{border-top:1px solid var(--line);padding:3rem 0;color:var(--mute);font-si
       '\n\n'+document.getElementById('b').value.trim();
     var message=document.getElementById('cpm');
 
-    function fail(){
-      message.textContent='Kopieren nicht möglich. Bitte markiere den Text und kopiere ihn manuell.';
-    }
-
     if(navigator.clipboard&&navigator.clipboard.writeText){
       navigator.clipboard.writeText(text).then(function(){
         message.textContent='Text kopiert.';
-      }).catch(fail);
+      }).catch(function(){
+        message.textContent='Kopieren nicht möglich. Bitte markiere den Text und kopiere ihn manuell.';
+      });
     }else{
-      fail();
+      message.textContent='Kopieren nicht möglich. Bitte markiere den Text und kopiere ihn manuell.';
     }
   });
 })();
