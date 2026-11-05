@@ -1,4 +1,4 @@
-const DEFAULT_ORIGIN = "https://wilsonniklas2-arch.github.io";
+const DEFAULT_ORIGIN = "https://what-darktec.vercel.app,https://wilsonniklas2-arch.github.io";
 const MAX_MESSAGE_CHARS = 1200;
 const MAX_HISTORY_MESSAGES = 10;
 const MAX_HISTORY_CHARS = 7000;
