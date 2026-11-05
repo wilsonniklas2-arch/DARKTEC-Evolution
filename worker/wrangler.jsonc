@@ -9,7 +9,7 @@
   },
   "vars": {
     "OPENAI_MODEL": "gpt-6-luna",
-    "ALLOWED_ORIGINS": "https://wilsonniklas2-arch.github.io"
+    "ALLOWED_ORIGINS": "https://what-darktec.vercel.app,https://wilsonniklas2-arch.github.io"
   },
   "secrets": {
     "required": [
