@@ -598,6 +598,7 @@ footer { padding: 3rem 0; border-top: 1px solid var(--line); color: var(--muted)
   });
 })();
 </script>
+<script src="./kevin-config.js"></script>
 <!-- DARKTEC KEVIN GUIDE: PHASE 1 -->
 <style>
   #kevin-widget, #kevin-widget * {
@@ -854,7 +855,7 @@ footer { padding: 3rem 0; border-top: 1px solid var(--line); color: var(--muted)
       <div class="kv-avatar" aria-hidden="true">K.</div>
       <div class="kv-heading">
         <strong>Kevin, dein Guide</strong>
-        <small>DARKTEC EVOLUTION · DEMO</small>
+        <small id="kevin-mode">DARKTEC EVOLUTION · DEMO</small>
       </div>
       <button id="kevin-close" type="button" aria-label="Chat schließen">×</button>
     </div>
@@ -882,7 +883,7 @@ footer { padding: 3rem 0; border-top: 1px solid var(--line); color: var(--muted)
       <button id="kevin-send" type="submit">Senden</button>
     </form>
     <div class="kv-footnote">
-      Demo-Version · Antworten sind noch nicht KI-generiert.
+      <span id="kevin-status">Demo-Modus · Antworten sind vorbereitet.</span>
     </div>
   </section>
 </div>
@@ -921,6 +922,7 @@ footer { padding: 3rem 0; border-top: 1px solid var(--line); color: var(--muted)
     bubble.textContent = text;
     messages.appendChild(bubble);
     messages.scrollTop = messages.scrollHeight;
+    return bubble;
   }
 
   function getDemoReply(question) {
@@ -961,7 +963,18 @@ footer { padding: 3rem 0; border-top: 1px solid var(--line); color: var(--muted)
     return 'Gute Frage! 😏 Mein echtes KI-Gehirn ist noch nicht angeschlossen – diese Version arbeitet mit vorbereiteten Antworten. Schau dich auf der Website um oder nutze das Kontaktformular. In Phase 2 bekommt Kevin seine echte KI-Anbindung.';
   }
 
-  function sendMessage(text) {
+  var kevinConfig = window.DARKTEC_KEVIN_CONFIG || {};
+  var kevinApiUrl = typeof kevinConfig.apiUrl === 'string' ? kevinConfig.apiUrl.trim() : '';
+  var conversation = [];
+  var modeLabel = document.getElementById('kevin-mode');
+  var statusLabel = document.getElementById('kevin-status');
+
+  if (kevinApiUrl) {
+    if (modeLabel) modeLabel.textContent = 'DARKTEC EVOLUTION · KI';
+    if (statusLabel) statusLabel.textContent = 'KI-Verbindung konfiguriert · beim ersten Chat wird sie geprüft.';
+  }
+
+  async function sendMessage(text) {
     var question = text.trim();
     if (!question || sendBtn.disabled) return;
 
@@ -970,11 +983,48 @@ footer { padding: 3rem 0; border-top: 1px solid var(--line); color: var(--muted)
     input.style.height = 'auto';
     sendBtn.disabled = true;
 
-    window.setTimeout(function () {
-      addMessage(getDemoReply(question), 'kevin');
+    if (!kevinApiUrl) {
+      window.setTimeout(function () {
+        addMessage(getDemoReply(question), 'kevin');
+        sendBtn.disabled = false;
+        input.focus();
+      }, 350);
+      return;
+    }
+
+    conversation.push({ role: 'user', content: question });
+    var waitingBubble = addMessage('Kevin denkt nach …', 'kevin');
+
+    try {
+      var response = await fetch(kevinApiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: conversation.slice(-10) })
+      });
+
+      var data = await response.json().catch(function () { return {}; });
+      if (!response.ok) {
+        throw new Error(data.error || 'Die Verbindung zu Kevin ist gerade nicht möglich.');
+      }
+
+      var reply = typeof data.reply === 'string' ? data.reply.trim() : '';
+      if (!reply) throw new Error('Kevin hat gerade keine Textantwort zurückgegeben.');
+
+      if (waitingBubble.parentNode) waitingBubble.parentNode.removeChild(waitingBubble);
+      addMessage(reply, 'kevin');
+      conversation.push({ role: 'assistant', content: reply });
+      if (conversation.length > 10) conversation = conversation.slice(-10);
+    } catch (error) {
+      if (conversation.length && conversation[conversation.length - 1].role === 'user') {
+        conversation.pop();
+      }
+      if (waitingBubble.parentNode) waitingBubble.parentNode.removeChild(waitingBubble);
+      addMessage(error.message || 'Kevin ist gerade nicht erreichbar. Bitte versuche es später erneut.', 'kevin');
+      console.error('Kevin connection error:', error);
+    } finally {
       sendBtn.disabled = false;
       input.focus();
-    }, 350);
+    }
   }
 
   launcher.addEventListener('click', function () {

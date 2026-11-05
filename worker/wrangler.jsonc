@@ -1,0 +1,29 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "darktec-kevin-api",
+  "main": "src/index.js",
+  "compatibility_date": "2026-11-05",
+  "workers_dev": true,
+  "observability": {
+    "enabled": true
+  },
+  "vars": {
+    "OPENAI_MODEL": "gpt-6-luna",
+    "ALLOWED_ORIGINS": "https://what-darktec.vercel.app,https://wilsonniklas2-arch.github.io"
+  },
+  "secrets": {
+    "required": [
+      "OPENAI_API_KEY"
+    ]
+  },
+  "ratelimits": [
+    {
+      "name": "KEVIN_LIMITER",
+      "namespace_id": "8372154",
+      "simple": {
+        "limit": 12,
+        "period": 60
+      }
+    }
+  ]
+}
