@@ -43,7 +43,7 @@ The chat endpoint is:
 https://darktec-kevin-api.YOUR-CLOUDFLARE-SUBDOMAIN.workers.dev/api/chat
 ```
 
-The Wrangler configuration declares the non-secret model and allowed origin. Change `OPENAI_MODEL` only to a model available to the OpenAI project key. Change `ALLOWED_ORIGINS` if the website is moved to a custom domain.
+The Wrangler configuration declares the non-secret model and allows the repository's listed Vercel domain (`https://what-darktec.vercel.app`) plus the associated GitHub Pages domain. Change `ALLOWED_ORIGINS` if the website is moved to another domain. Change `OPENAI_MODEL` only to a model available to the OpenAI project key.
 
 ## Connect the website
 
